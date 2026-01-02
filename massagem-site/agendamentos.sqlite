@@ -1,0 +1,22 @@
+-- Criação da tabela de agendamentos baseada nos serviços do index.html
+CREATE TABLE IF NOT EXISTS agendamentos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_cliente TEXT NOT NULL,
+    whatsapp TEXT NOT NULL,
+    servico_escolhido TEXT CHECK(servico_escolhido IN (
+        'Massagem Terapêutica', 
+        'Massagem Relaxante', 
+        'Reflexologia', 
+        'Massagem com Pindas', 
+        'Drenagem Linfática Manual', 
+        'Back-Massagem'
+    )),
+    data_agendamento DATE NOT NULL,
+    horario TIME NOT NULL,
+    observacoes TEXT,
+    status TEXT DEFAULT 'Pendente' -- Pendente, Confirmado, Cancelado
+);
+
+-- Inserção de um exemplo para teste
+INSERT INTO agendamentos (nome_cliente, whatsapp, servico_escolhido, data_agendamento, horario, status)
+VALUES ('Maria Oliveira', '71999998888', 'Massagem Relaxante', '2024-05-20', '14:30', 'Pendente');
